@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
     override.vm.network "private_network", type: "dhcp"
     override.vm.network :forwarded_port, host: 1433, guest: 1433  # SQLServer
   end
-  scripts = [ "bootstrap.sh" ]
+  scripts = [ "bootstrap.sh", "restore.sh" ]
   scripts.each { |script|
     config.vm.provision :shell, privileged: false, :path => "./" << script
   }
