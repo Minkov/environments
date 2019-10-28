@@ -1,13 +1,18 @@
+#!/usr/bin/env bash
 
-export MSSQL_SA_PASSWORD="Password123"
+sudo cp /vagrant/backups/* /var/opt/mssql/data/
 
-for backup in /vagrant/dbs; do
+# BACKUP_DIR=/home/doncho/repos/sqlserver-automation/*
+BACKUP_DIR=/vagrant/backups/*
 
-db=${backup/.bak/}
+# chown -R vagrant:vagrant /vagrant/backups/
 
+for BACKUP_FILE_PATH in $BACKUP_DIR; do
 
-sqlcmd -H localhost -U SA -P $MSSQL_SA_PASSWORD -Q "RESTORE DATABASE $db FROM DISK = '/vagrant/dbs/$backup.bak'
-WITH MOVE '[$db]' TO '/var/opt/mssql/data/$db.mdf',
-MOVE 'WWI_Log' TO '/var/opt/mssql/data/${db}_log.ldf';"
+BACKUP_FILE=$(basename "$BACKUP_FILE_PATH")
+DB_NAME=${BACKUP_FILE/.bak/}
+
+QUERY="RESTORE DATABASE [$DB_NAME] FROM DISK = N'/var/opt/mssql/data/${BACKUP_FILE}' WITH FILE = 1, NOUNLOAD, REPLACE, STATS = 5"
+sqlcmd -H localhost -U SA -P Password123 -Q "$QUERY"
 
 done
