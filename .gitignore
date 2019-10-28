@@ -1,1 +1,3 @@
-.vagrantc
+.vagrant
+backups/*
+
