@@ -1,0 +1,17 @@
+Vagrant.configure(2) do |config|
+  config.vm.box_check_update = false
+
+  config.vm.provider "virtualbox" do |vb, override|
+    vb.name = "apps-server"
+    vb.memory = "4096"
+    vb.cpus = 4
+    # Do not use official Ubuntu box, broken in many ways https://bugs.launchpad.net/cloud-images/+bug/1569237
+    override.vm.box = "centos/7"
+    override.vm.network "private_network", type: "dhcp"
+    override.vm.network :forwarded_port, host: 8001, guest: 80  # SQLServer
+  end
+  scripts = [ "bootstrap.sh" ]
+  scripts.each { |script|
+    config.vm.provision :shell, privileged: false, :path => "./" << script
+  }
+end
