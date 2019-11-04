@@ -6,16 +6,18 @@ sudo yum -y update
 
 sudo yum -y install vim git yum-utils device-mapper-persistent-data lvm2
 
+source /vagrant/.env
+
 # Docker
 
 sudo yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-engine
+                docker-client \
+                docker-client-latest \
+                docker-common \
+                docker-latest \
+                docker-latest-logrotate \
+                docker-logrotate \
+                docker-engine
 
 sudo yum-config-manager \
     --add-repo \
@@ -27,15 +29,13 @@ sudo usermod -aG docker vagrant
 
 sudo systemctl start docker
 
+docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
 # Docker Compose
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-
-source /vagrant/.env
-
-docker login
 
 # Clone repos
 
