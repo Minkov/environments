@@ -47,5 +47,6 @@ fi
 # Fireup docker
 
 cd /vagrant/apps
+docker-compose -f docker-compose.${ENVIRONMENT}.yml pull
 docker-compose -f docker-compose.${ENVIRONMENT}.yml up -d
 
