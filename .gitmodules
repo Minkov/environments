@@ -1,0 +1,3 @@
+[submodule "apps-server/apps"]
+	path = apps-server/apps
+	url = https://github.com/SoftUni-Internal/interactive-deployment.git
