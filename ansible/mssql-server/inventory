@@ -1,0 +1,3 @@
+[servers]
+ansible1 ansible_port=2222
+ansible2 ansible_port=2200
