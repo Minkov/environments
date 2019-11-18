@@ -16,5 +16,6 @@ Vagrant.configure(2) do |config|
       automount: true
 
     override.vm.network :forwarded_port, host: 1433, guest: 1433
+    override.vm.network :forwarded_port, host: 6379, guest: 6379
   end
 end

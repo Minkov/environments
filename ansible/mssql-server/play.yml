@@ -72,5 +72,6 @@
   max_fail_percentage: 0
 
   roles:
-  - mssql-server
+  # - mssql-server
+  - redis
 

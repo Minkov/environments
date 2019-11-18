@@ -2,27 +2,15 @@
 
 # install mssql-server package
 
-- name: install mssql-server repo (CentOS, RedHat)
+- name: install mssql-server repo
   get_url:
     url: "{{ centos_server_repo_url }}"
     dest: /etc/yum.repos.d/mssql-server.repo
-  when: ansible_distribution in ['CentOS', 'RedHat']
-
-- name: install mssql-server repo (Ubuntu)
-  get_url:
-    url: "{{ ubuntu_server_repo_url }}"
-    dest: /etc/apt/sources.list.d/mssql-server.list
-  when: ansible_distribution == 'Ubuntu'
-
-- name: refresh apt-get cache for server repo (Ubuntu)
-  command: apt-get update
-  when: ansible_distribution == 'Ubuntu'
 
 - name: install mssql-server package
   package:
     name: mssql-server
     state: latest
-
 
 # setup
 
@@ -32,7 +20,6 @@
     setup_pid: "{{ pid }}"
     login_name: 'sa'
     login_password: "{{ sa_password }}"
-
 
 # TSQL endpoint
 
@@ -45,21 +32,10 @@
 
 # mssql-tools package
 
-- name: install mssql-tools repo (CentOS, RedHat)
+- name: install mssql-tools repo
   get_url:
     url: "{{ centos_tools_repo_url }}"
     dest: /etc/yum.repos.d/mssql-tools.repo
-  when: ansible_distribution in ['CentOS', 'RedHat']
-
-- name: install mssql-tools repo (Ubuntu)
-  get_url:
-    url: "{{ ubuntu_tools_repo_url }}"
-    dest: /etc/apt/sources.list.d/mssql-tools.list
-  when: ansible_distribution == 'Ubuntu'
-
-- name: refresh apt-get cache for tools repo (Ubuntu)
-  command: apt-get update
-  when: ansible_distribution == 'Ubuntu'
 
 - name: install mssql-tools package
   package:
