@@ -1,12 +1,28 @@
-- firewalld:
-    service: https
-    permanent: yes
-    state: enabled
+- name: Enable firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: Set dmz as default policy
+  command: firewall-cmd --set-default-zone=dmz
+
 - firewalld:
     service: http
     permanent: yes
     state: enabled
 - firewalld:
+    service: https
+    permanent: yes
+    state: enabled
+
+- firewalld:
     service: ssh
     permanent: yes
     state: enabled
+
+- name: Bounce firewalld
+  service:
+    name: firewalld
+    state: restarted
+
