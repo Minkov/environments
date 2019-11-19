@@ -1,0 +1,12 @@
+- firewalld:
+    service: https
+    permanent: yes
+    state: enabled
+- firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+- firewalld:
+    service: ssh
+    permanent: yes
+    state: enabled

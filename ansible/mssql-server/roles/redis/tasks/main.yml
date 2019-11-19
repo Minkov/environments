@@ -1,10 +1,15 @@
 ---
 
 # install redis package
-- name: Include OS-specific variables.
+- name: Include Redis variables.
   include_vars: "redis.yml"
 
-- name: Define redis_package.
+- name: Install epel
+  package:
+    name: epel-release
+    state: present
+
+- name: Define redis_package
   set_fact:
     redis_package: "{{ __redis_package }}"
   when: redis_package is not defined

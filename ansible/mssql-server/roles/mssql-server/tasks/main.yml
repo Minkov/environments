@@ -2,6 +2,9 @@
 
 # install mssql-server package
 
+- name: Include MS SQL Server variables.
+  include_vars: "sqlserver.yml"
+
 - name: install mssql-server repo
   get_url:
     url: "{{ centos_server_repo_url }}"
