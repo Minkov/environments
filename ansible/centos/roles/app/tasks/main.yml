@@ -1,0 +1,22 @@
+--- 
+- name: Create ~/repos directory
+  file:
+    path: "/home/{{ ansible_user }}/repos"
+    state: directory
+    mode: '0777'
+
+- name: Clone nginx to ~/repos/nginx
+  git:
+    repo: git@github.com:Minkov/nginx.git
+    version: master
+    dest: "/home/{{ ansible_user }}/repos/nginx"
+    accept_hostkey: yes
+  become: no
+
+- name: Clone interactive-deployment to ~/repos/
+  git:
+    repo: git@github.com:SoftUni-internal/interactive-deployment.git
+    version: master
+    dest: "/home/{{ ansible_user }}/repos/interactive-deployment"
+    accept_hostkey: yes
+  become: no
