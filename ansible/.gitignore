@@ -1,4 +1,9 @@
 .env
+
+# Vagrant
 .vagrant
 keys
+
+# Ansible secrets
 vault.yml
+inventory
