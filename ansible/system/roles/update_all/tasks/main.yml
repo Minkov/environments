@@ -2,3 +2,19 @@
 # Update all packages
 - name: Upgrade all packages
   yum: name=*, state=latest
+
+- name: Install epel-release repository
+  package:
+    name: epel-release
+    state: present
+
+- name: Install IUS repository
+  package:
+    name:
+      - https://repo.ius.io/ius-release-el7.rpm
+    state: present
+- name: Install WANDisco repository
+  package:
+    name: http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+    state: latest
+     

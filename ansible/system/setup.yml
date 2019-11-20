@@ -16,9 +16,9 @@
 
   roles:
   - update_all
+  - utilities
   - mssql-server
   - redis
   - docker
   - firewalld
-  - utilities
   - zsh
