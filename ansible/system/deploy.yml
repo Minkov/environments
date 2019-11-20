@@ -6,7 +6,7 @@
 - hosts: servers
 
   vars_files:
-  - 'vault.yml'
+  - './vault.yml'
 
   become: yes
   become_user: root
@@ -15,12 +15,7 @@
   max_fail_percentage: 0
 
   roles:
-  - update_all
-  - mssql-server
-  - redis
-  - docker
-  - firewalld
-  - utilities
-  - zsh
-  - app
+  - checkout_app
+  - update_app
+  # - deploy_app
 

@@ -3,3 +3,19 @@
   package:
     name: git
     state: present
+
+- name: Install python-pip
+  package:
+    name: python-pip
+    state: present
+
+- name: Install docker-py
+  pip:
+    name: docker-py
+    state: present
+
+- name: Install docker-py
+  pip:
+    name: setuptools
+    state: present
+  

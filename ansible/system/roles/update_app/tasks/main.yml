@@ -1,0 +1,5 @@
+---
+- name: Pull newer images
+  docker_compose:
+    project_src: "docker-compose.{{ application_environment }}.yml"
+    pull: yes
