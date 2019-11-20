@@ -15,9 +15,11 @@
   max_fail_percentage: 0
 
   roles:
-  # - update_all
+  - update_all
   - mssql-server
   - redis
   - docker
   - firewalld
+  - utilities
+  - zsh
 
