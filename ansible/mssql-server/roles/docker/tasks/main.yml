@@ -1,26 +1,32 @@
 ---
 # Install Docker
 
-- name: Check if Docker is installed
-  command: systemctl status docker
-  register: docker_check
-  ignore_errors: yes
+- name: Install Docker dependencies
+  package:
+    name: "{{ packages }}"
+    state: latest
+  vars: 
+    packages:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2 
 
-- name: Download the Docker installer
+
+- name: Configuring docker-ce repo
   get_url:
-    url: https://get.docker.com/
-    dest: /root/install_docker.sh
-    mode: 0700
-  when: docker_check.stderr.find('service could not be found') != -1
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: 0644
 
-- name: Install Docker
-  shell: /root/install_docker.sh
-  when: docker_check.stderr.find('service could not be found') != -1
-
-- name: Remove the Docker installer file.
-  file:
-    state: absent
-    path: /root/install_docker.sh
+- name: Install Docker CE
+  package:
+    name: "{{ packages }}"
+    state: latest
+  vars: 
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
 
 - name: Enable the Docker daemon in systemd
   systemd:
