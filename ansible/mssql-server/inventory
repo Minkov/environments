@@ -1,3 +1,3 @@
 [servers]
-127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/home/doncho/repos/sqlserver-automation/ansible/keys/vagrant_ssh ansible_become_password=vagrant
+127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/home/doncho/repos/environments/ansible/keys/vagrant_ssh ansible_become_password=vagrant
 192.168.14.107 ansible_port=22 ansible_user=server ansible_ssh_private_key_file=/home/doncho/.ssh/id_rsa ansible_become_password=12345qwe

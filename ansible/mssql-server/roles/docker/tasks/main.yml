@@ -49,6 +49,8 @@
     - docker_compose_check.msg.find('No such file or directory') != -1
 - name: Add user(s) to "docker" group
   user:
-    name: "vagrant"
+    name: "{{ ansible_user }}"
     groups: "docker"
     append: true
+    
+
