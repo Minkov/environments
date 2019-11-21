@@ -1,5 +1,15 @@
 ---
+- name: install the package, force upgrade
+  pip: 
+    name: pip
+    extra_args: --upgrade
+
+- name: Docker-compose fix
+  pip:
+    name: docker-compose
+    state: latest
+
 - name: Pull newer images
   docker_compose:
-    project_src: "docker-compose.{{ application_environment }}.yml"
+    project_src: "/home/{{ ansible_user }}/repos/interactive-deployment/envs/docker-compose.{{ application_environment }}.yml"
     pull: yes

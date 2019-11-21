@@ -8,15 +8,10 @@
 - name: Install python-pip
   package:
     name: python-pip
-    state: present
+    state: latest
 
-- name: Install docker-py
-  pip:
-    name: docker-py
-    state: present
-
-- name: Install docker-py
-  pip:
-    name: setuptools
-    state: present
+- name: Install ViM
+  package:
+    name: vim
+    state: latest
   
