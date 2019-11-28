@@ -8,18 +8,23 @@
     name: epel-release
     state: present
 
-- name: Install IUS repository
-  yum_repository:
-    name: ius
-    file: ius
-    description: IUS Community Packages for Enterprise Linux 7 - $basearch
-    mirrorlist: https://mirrors.iuscommunity.org/mirrorlist?repo=ius-centos7&arch=$basearch&protocol=http
-    gpgkey: http://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY
-    enabled: yes
-    gpgcheck: yes
+# - name: Install IUS repository
+#  yum_repository:
+#    name: ius
+#    file: ius
+#    description: IUS Community Packages for Enterprise Linux 7 - $basearch
+#    mirrorlist: https://mirrors.iuscommunity.org/mirrorlist?repo=ius-centos7&arch=$basearch&protocol=http
+#    gpgkey: http://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY
+#    enabled: yes
+#    gpgcheck: yes
   
-- name: Install WANDisco repository
-  package:
-    name: http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
-    state: latest
-     
+# - name: Install WANDisco repository
+#   yum_repository:
+#     name: WANDisco
+#     file: wandisco
+#     description: WANDisco git repository
+#     baseurl: http://opensource.wandisco.com/rhel/$releasever/git/$basearch
+#     gpgkey: http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
+#     enabled: yes
+#     gpgcheck: yes
+

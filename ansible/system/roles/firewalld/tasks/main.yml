@@ -1,3 +1,8 @@
+- name: Ensure firewalld is installed
+  package:
+    name: firewalld
+    state: latest
+
 - name: Enable firewalld
   service:
     name: firewalld
@@ -5,19 +10,28 @@
     enabled: yes
 
 - name: Set dmz as default policy
-  command: firewall-cmd --set-default-zone=dmz
+  command: firewall-cmd --set-default-zone=public
 
 - firewalld:
+    zone: public
     service: http
     permanent: yes
     state: enabled
-  
+
 - firewalld:
+    zone: public
     service: https
     permanent: yes
     state: enabled
 
 - firewalld:
+    zone: public
+    service: ssh
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    zone: internal
     service: ssh
     permanent: yes
     state: enabled
@@ -26,4 +40,3 @@
   service:
     name: firewalld
     state: restarted
-
