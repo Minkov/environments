@@ -14,4 +14,11 @@
   package:
     name: vim
     state: latest
+
+- name: Install net-tools
+  package:
+    name: net-tools
+    state: latest
+
+
   

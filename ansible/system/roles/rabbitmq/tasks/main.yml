@@ -1,4 +1,31 @@
 ---
-- include: rabbitmq.yml
-  tags:
-  - rabbitmq
+
+- name: Include RabbitMQ variables.
+  include_vars: "rabbitmq.yml"
+
+- name: Ensure erlang is installed.
+  package:
+    name: erlang
+    state: present
+
+# Setup/install tasks.
+- name: Add packagecloud GPG key.
+  rpm_key:
+    key: "https://packagecloud.io/gpg.key"
+    state: present
+
+- name: Download RabbitMQ package.
+  get_url:
+    url: "{{ rabbitmq_rpm_url }}"
+    dest: "/tmp/{{ rabbitmq_rpm }}"
+
+- name: Ensure RabbitMQ is installed.
+  yum:
+    name: "/tmp/{{ rabbitmq_rpm }}"
+    state: "present"
+
+- name: Ensure rabbitmq is started and enabled (if configured).
+  service:
+    name: "{{ rabbitmq_daemon }}"
+    state: "{{ rabbitmq_state }}"
+    enabled: "{{ rabbitmq_enabled }}"

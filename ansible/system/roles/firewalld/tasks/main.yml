@@ -36,6 +36,18 @@
     permanent: yes
     state: enabled
 
+- firewalld:
+    zone: internal
+    service: http
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    zone: internal
+    service: https
+    permanent: yes
+    state: enabled
+
 - name: Bounce firewalld
   service:
     name: firewalld
