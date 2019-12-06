@@ -30,24 +30,39 @@
     permanent: yes
     state: enabled
 
-- firewalld:
-    zone: internal
-    service: ssh
+- name: Enable docker IPs internally (172.16.0.0)
+  firewalld:
+    rich_rule: rule family=ipv4 source address="172.16.0.0/16" accept
+    zone: public
     permanent: yes
+    immediate: yes
     state: enabled
 
-- firewalld:
-    zone: internal
-    service: http
+- name: Enable docker IPs internally (172.17.0.0)
+  firewalld:
+    rich_rule: rule family=ipv4 source address="172.17.0.0/16" accept
+    zone: public
     permanent: yes
+    immediate: yes
     state: enabled
 
-- firewalld:
-    zone: internal
-    service: https
+- name: Enable docker IPs internally (172.18.0.0)
+  firewalld:
+    rich_rule: rule family=ipv4 source address="172.18.0.0/16" accept
+    zone: public
     permanent: yes
+    immediate: yes
     state: enabled
 
+
+- name: Enable docker IPs internally (172.19.0.0)
+  firewalld:
+    rich_rule: rule family=ipv4 source address="172.19.0.0/16" accept
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+    
 - name: Bounce firewalld
   service:
     name: firewalld

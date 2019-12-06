@@ -1,3 +1,14 @@
 ---
+
 - name: restart redis
-  service: "name={{ redis_daemon }} state=restarted"
+  service: 
+    name: "{{ redis_daemon }}"
+    state: restarted
+
+- name: rabbitmq restart
+  service:
+    name: rabbitmq-server
+    state: restarted
+
+- name: start rabbitmq app
+  command: rabbitmqctl start_app

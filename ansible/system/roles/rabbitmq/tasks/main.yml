@@ -1,31 +1,47 @@
 ---
-
-- name: Include RabbitMQ variables.
+- name: Include RabbitMQ variables
   include_vars: "rabbitmq.yml"
 
-- name: Ensure erlang is installed.
+- name: Install Erlang repository
+  yum_repository:
+    name: erlang-solutions
+    file: erlang.repo
+    description: CentOS $releasever - $basearch - Erlang Solutions
+    baseurl: https://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch
+    gpgkey: https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
+    enabled: yes
+    gpgcheck: yes
+
+- name: Install erlang
   package:
     name: erlang
+    state: latest
+
+- name: Install rabbitmq-server {{ rabbitmq_version }} (RedHat)
+  package:
+    name: "https://dl.bintray.com/rabbitmq/all/rabbitmq-server/{{ rabbitmq_version }}/rabbitmq-server-{{ rabbitmq_version }}-1.el7.noarch.rpm"
     state: present
 
-# Setup/install tasks.
-- name: Add packagecloud GPG key.
-  rpm_key:
-    key: "https://packagecloud.io/gpg.key"
-    state: present
-
-- name: Download RabbitMQ package.
-  get_url:
-    url: "{{ rabbitmq_rpm_url }}"
-    dest: "/tmp/{{ rabbitmq_rpm }}"
-
-- name: Ensure RabbitMQ is installed.
-  yum:
-    name: "/tmp/{{ rabbitmq_rpm }}"
-    state: "present"
-
-- name: Ensure rabbitmq is started and enabled (if configured).
+- name: Enable rabbitmq-server to survive reboot
   service:
-    name: "{{ rabbitmq_daemon }}"
-    state: "{{ rabbitmq_state }}"
-    enabled: "{{ rabbitmq_enabled }}"
+    name: rabbitmq-server
+    enabled: yes
+
+- name: Configure queue service
+  include: configuration.yml
+  tags: rabbitmq_configuration
+  
+- name: Install plugins
+  include: plugins.yml
+  tags: rabbitmq_plugins
+
+- name: Add interactive virtual host
+  rabbitmq_vhost:
+    name: /interactive
+    state: present
+
+- name: ensure rabbitmq server is running
+  service:
+    name: rabbitmq-server
+    state: restarted
+  changed_when: false

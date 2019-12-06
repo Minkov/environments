@@ -20,5 +20,10 @@
     name: net-tools
     state: latest
 
+- name: Install net-tools
+  package:
+    name: telnet
+    state: latest
+  
 
   

@@ -1,0 +1,19 @@
+---
+
+- name: symlink rabbitmq bin to sbin
+  file:
+    src={{ rabbitmq_bin_path }}
+    dest={{ rabbitmq_sbin_path }}
+    state=link
+
+- name: enable plugins
+  rabbitmq_plugin:
+    names={{ rabbitmq_plugins | join(',') }}
+
+- name: correct enabled plugins permissions
+  file:
+    path={{ rabbitmq_enabled_plugins_file_path }}
+    mode={{ rabbitmq_enabled_plugins_file_mode }}
+    owner={{ rabbitmq_enabled_plugins_file_owner }}
+    group={{ rabbitmq_enabled_plugins_file_group }}
+  changed_when: false
