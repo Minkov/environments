@@ -5,11 +5,6 @@
     name: git
     state: latest
 
-- name: Install python-pip
-  package:
-    name: python-pip
-    state: latest
-
 - name: Install ViM
   package:
     name: vim
@@ -20,10 +15,20 @@
     name: net-tools
     state: latest
 
-- name: Install net-tools
+- name: Install telnet
   package:
     name: telnet
     state: latest
-  
+
+- name: Install wget
+  package:
+    name: wget
+    state: latest
+
+- name: Install curl
+  package:
+    name: curl
+    state: latest
+
 
   
