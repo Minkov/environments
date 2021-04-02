@@ -2,6 +2,10 @@
 # Update all packages
 - name: Upgrade all packages
   yum: name=*, state=latest
+# - name: Update all packages
+#   yum:
+#     update_only: yes
+#     state: latest
 
 - name: Install epel-release repository
   package:

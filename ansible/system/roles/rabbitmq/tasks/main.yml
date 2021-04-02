@@ -7,7 +7,7 @@
     name: erlang-solutions
     file: erlang.repo
     description: CentOS $releasever - $basearch - Erlang Solutions
-    baseurl: https://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch
+    baseurl: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
     gpgkey: https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
     enabled: yes
     gpgcheck: yes

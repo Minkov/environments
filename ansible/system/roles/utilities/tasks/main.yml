@@ -10,6 +10,11 @@
     name: vim
     state: latest
 
+- name: Install nano
+  package:
+    name: nano
+    state: latest
+  
 - name: Install net-tools
   package:
     name: net-tools

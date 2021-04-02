@@ -2,6 +2,17 @@
 
 # install mssql-server package
 
+- name: Install MS SQL Server prerequisite (python2)
+  yum:
+    name: python2
+    state: latest
+
+- name: Install MS SQL Server prerequisite (compat-openssl10)
+  yum:
+    name: python2
+    state: latest
+
+
 - name: Include MS SQL Server variables.
   include_vars: "sqlserver.yml"
 

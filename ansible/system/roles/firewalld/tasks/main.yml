@@ -62,7 +62,7 @@
     permanent: yes
     immediate: yes
     state: enabled
-    
+
 - name: Bounce firewalld
   service:
     name: firewalld

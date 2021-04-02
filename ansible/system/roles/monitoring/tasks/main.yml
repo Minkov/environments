@@ -1,0 +1,6 @@
+---
+
+- name: Monit
+  import_role:
+    name: monit
+  tags: [ 'role::monit', 'skip::monit' ]
