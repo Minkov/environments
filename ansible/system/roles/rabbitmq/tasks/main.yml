@@ -2,30 +2,30 @@
 - name: Include RabbitMQ variables
   include_vars: "rabbitmq.yml"
 
-- name: Install Erlang repository
-  yum_repository:
-    name: erlang-solutions
-    file: erlang.repo
-    description: CentOS $releasever - $basearch - Erlang Solutions
-    baseurl: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
-    gpgkey: https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
-    enabled: yes
-    gpgcheck: yes
+# - name: Install Erlang repository
+#   apt_repository:
+#     name: erlang-solutions
+#     file: erlang.repo
+#     description: CentOS $releasever - $basearch - Erlang Solutions
+#     baseurl: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
+#     gpgkey: https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
+#     enabled: yes
+#     gpgcheck: yes
 
-- name: Install erlang
-  package:
-    name: erlang
-    state: latest
+# - name: Install erlang
+#   package:
+#     name: erlang
+#     state: latest
 
-- name: Install rabbitmq-server {{ rabbitmq_version }} (RedHat)
-  package:
-    name: "https://dl.bintray.com/rabbitmq/all/rabbitmq-server/{{ rabbitmq_version }}/rabbitmq-server-{{ rabbitmq_version }}-1.el7.noarch.rpm"
-    state: present
+# - name: Install rabbitmq-server {{ rabbitmq_version }} (RedHat)
+#   package:
+#     name: "https://dl.bintray.com/rabbitmq/all/rabbitmq-server/{{ rabbitmq_version }}/rabbitmq-server-{{ rabbitmq_version }}-1.el7.noarch.rpm"
+#     state: present
 
-- name: Enable rabbitmq-server to survive reboot
-  service:
-    name: rabbitmq-server
-    enabled: yes
+# - name: Enable rabbitmq-server to survive reboot
+#   service:
+#     name: rabbitmq-server
+#     enabled: yes
 
 - name: Configure queue service
   include: configuration.yml
@@ -35,13 +35,13 @@
   include: plugins.yml
   tags: rabbitmq_plugins
 
-- name: Add interactive virtual host
-  rabbitmq_vhost:
-    name: /interactive
-    state: present
+# - name: Add interactive virtual host
+#   rabbitmq_vhost:
+#     name: /interactive
+#     state: present
 
-- name: ensure rabbitmq server is running
-  service:
-    name: rabbitmq-server
-    state: restarted
-  changed_when: false
+# - name: ensure rabbitmq server is running
+#   service:
+#     name: rabbitmq-server
+#     state: restarted
+#   changed_when: false

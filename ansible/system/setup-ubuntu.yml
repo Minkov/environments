@@ -20,7 +20,7 @@
   - zsh
   # - mssql-server
   # - redis
-  #- rabbitmq
+  # - rabbitmq
   - docker
   - firewalld
   # - monitoring

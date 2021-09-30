@@ -1,34 +1,7 @@
 ---
 # Update all packages
-- name: Upgrade all packages
-  yum: name=*, state=latest
-# - name: Update all packages
-#   yum:
-#     update_only: yes
-#     state: latest
+- name: Update apt-get repo and cache
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
-- name: Install epel-release repository
-  package:
-    name: epel-release
-    state: present
-
-# - name: Install IUS repository
-#  yum_repository:
-#    name: ius
-#    file: ius
-#    description: IUS Community Packages for Enterprise Linux 7 - $basearch
-#    mirrorlist: https://mirrors.iuscommunity.org/mirrorlist?repo=ius-centos7&arch=$basearch&protocol=http
-#    gpgkey: http://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY
-#    enabled: yes
-#    gpgcheck: yes
-  
-# - name: Install WANDisco repository
-#   yum_repository:
-#     name: WANDisco
-#     file: wandisco
-#     description: WANDisco git repository
-#     baseurl: http://opensource.wandisco.com/rhel/$releasever/git/$basearch
-#     gpgkey: http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
-#     enabled: yes
-#     gpgcheck: yes
-
+- name: Upgrade all apt packages
+  apt: upgrade=dist force_apt_get=yes
