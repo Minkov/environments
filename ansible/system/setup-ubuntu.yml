@@ -15,12 +15,12 @@
   max_fail_percentage: 0
 
   roles:
-  - update_all
-  - utilities
-  - zsh
+  # - update_all
+  # - utilities
+  # - zsh
   # - mssql-server
   # - redis
-  #- rabbitmq
-  - docker
-  - firewalld
+  - rabbitmq
+  # - docker
+  # - firewalld
   # - monitoring
