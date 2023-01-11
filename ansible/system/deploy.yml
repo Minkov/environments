@@ -17,5 +17,5 @@
   roles:
   - checkout_app
   - update_app
-  # - deploy_app
+  - deploy_app
 

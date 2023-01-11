@@ -1,6 +1,22 @@
 ---
 # Install Docker
+- name: Install required docker packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: true
 
+- name: install 'Docker SDK for Python'
+  pip:
+    name: docker
+  
 - name: Add Docker GPG apt Key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -47,3 +63,8 @@
     name: "{{ ansible_user }}"
     groups: "docker"
     append: true
+
+- name: Log into Docker registry
+  command: docker login ghcr.io --username "{{ gituser }}" --password-stdin
+  args:
+    stdin: "{{ gittoken }}"

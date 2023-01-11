@@ -1,6 +1,6 @@
 ---
 - name: install the package, force upgrade
-  pip: 
+  pip:
     name: pip
     extra_args: --upgrade
 
@@ -10,6 +10,4 @@
     state: latest
 
 - name: Pull newer images
-  docker_compose:
-    project_src: "/home/{{ ansible_user }}/repos/interactive-deployment/envs/docker-compose.{{ application_environment }}.yml"
-    pull: yes
+  shell: docker-compose -f "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/docker-compose.{{ application_environment }}.yml" pull
