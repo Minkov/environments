@@ -63,8 +63,3 @@
     name: "{{ ansible_user }}"
     groups: "docker"
     append: true
-
-- name: Log into Docker registry
-  command: docker login ghcr.io --username "{{ gituser }}" --password-stdin
-  args:
-    stdin: "{{ gittoken }}"

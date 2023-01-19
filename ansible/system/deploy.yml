@@ -15,6 +15,7 @@
   max_fail_percentage: 0
 
   roles:
+  - prepare_folder_structure
   - checkout_app
   - update_app
   - deploy_app
