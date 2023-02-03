@@ -16,7 +16,9 @@
 
   roles:
   - prepare_folder_structure
+  - webhook
   - checkout_app
+  - add_env_files
   - update_app
   - deploy_app
 

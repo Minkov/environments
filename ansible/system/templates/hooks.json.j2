@@ -1,0 +1,65 @@
+[
+    {
+        "id": "redeploy-ui",
+        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/deploy.sh",
+        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web",
+        "pass-arguments-to-command": [
+            {
+                "source": "string",
+                "name": "ui"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "payload-hash-sha1",
+                "secret": "{{ webhook_password }}",
+                "parameter": {
+                    "source": "header",
+                    "name": "X-Hub-Signature"
+                }
+            }
+        }
+    },
+    {
+        "id": "redeploy-admin",
+        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/deploy.sh",
+        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web",
+        "pass-arguments-to-command": [
+            {
+                "source": "string",
+                "name": "administration"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "payload-hash-sha1",
+                "secret": "{{ webhook_password }}",
+                "parameter": {
+                    "source": "header",
+                    "name": "X-Hub-Signature"
+                }
+            }
+        }
+    },
+    {
+        "id": "redeploy-distributor",
+        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/deploy.sh",
+        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web",
+        "pass-arguments-to-command": [
+            {
+                "source": "string",
+                "name": "submissions_distributor_service"
+            }
+        ],
+        "trigger-rule": {
+            "match": {
+                "type": "payload-hash-sha1",
+                "secret": "{{ webhook_password }}",
+                "parameter": {
+                    "source": "header",
+                    "name": "X-Hub-Signature"
+                }
+            }
+        }
+    }
+]
