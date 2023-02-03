@@ -4,11 +4,13 @@
     path: "/home/{{ ansible_user }}/repos"
     state: directory
     mode: '0777'
+
 - name: Create ~/dbs directory
   file:
     path: "/home/{{ ansible_user }}/dbs"
     state: directory
     mode: '0777'
+
 - name: Create ~/dbs/backups directory
   file:
     path: "/home/{{ ansible_user }}/dbs/backups"
