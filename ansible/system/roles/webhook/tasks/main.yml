@@ -15,5 +15,3 @@
     src: hooks.json.j2
     dest: "/home/{{ ansible_user }}/hooks/hooks.json"
     mode: '0777'
-
-# TODO add supervisor to create service

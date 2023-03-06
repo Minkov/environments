@@ -1,0 +1,35 @@
+--- 
+- name: Install supervisor
+  package:
+    name: supervisor
+    state: present
+
+- name: Create supervisor configuration directory
+  file:
+    path: "/home/{{ ansible_user }}/supervisor"
+    state: directory
+    mode: '0777'
+
+- name: Create supervisor logs directory
+  file:
+    path: "/home/{{ ansible_user }}/logs/supervisor"
+    state: directory
+    mode: '0777'
+
+- name: Add supervisor configuration
+  template:
+    src: supervisor.j2
+    dest: "/etc/supervisor/conf.d/webhooks.conf"
+    mode: '0777'
+
+- name: Supervisor rereade
+  command: supervisorctl reread
+  become: yes
+
+- name: Supervisor update configs
+  command: supervisorctl update
+  become: yes
+
+- name: Supervisor start webhooks
+  command: supervisorctl start webhooks:*
+  become: yes

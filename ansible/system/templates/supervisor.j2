@@ -1,0 +1,10 @@
+[program:webhooks]
+command=bash -c "/usr/bin/webhook -hooks /home/{{ ansible_user }}/hooks/hooks.json"
+redirect_stderr=true
+autostart=true
+autorestart=true
+user={{ ansible_user }}
+numprocs=1
+process_name=%(program_name)s_%(process_num)s
+stdout_logfile=/home/{{ ansible_user }}/logs/supervisor/supervisor.log
+environment=HOME="/home/{{ ansible_user }}",USER="{{ ansible_user }}"
