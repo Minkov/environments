@@ -1,40 +1,40 @@
 ---
 # Install Docker
-
-- name: Install Docker dependencies
-  package:
-    name: "{{ packages }}"
+- name: Install required docker packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
     state: latest
-  vars: 
-    packages:
-      - yum-utils
-      - device-mapper-persistent-data
-      - lvm2 
+    update_cache: true
 
-- name: Configuring docker-ce repo
-  get_url:
-    url: https://download.docker.com/linux/centos/docker-ce.repo
-    dest: /etc/yum.repos.d/docker-ce.repo
-    mode: 0644
+- name: install 'Docker SDK for Python'
+  pip:
+    name: docker
+  
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
 
-- name: Install Docker CE
-  package:
-    name: "{{ packages }}"
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
     state: latest
-  vars: 
-    packages:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
+    update_cache: true
 
 - name: Enable the Docker daemon in systemd
-  systemd:
-    name: docker
-    enabled: yes
-    masked: no
-
-- name: Start the Docker daemon
-  systemd:
+  service:
     name: docker
     state: started
     masked: no
@@ -49,7 +49,6 @@
 
 - shell: uname -m
   register: uname_m_result
-
 - name: Download and install Docker Compose
   get_url:
     url: "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-{{ uname_s_result.stdout }}-{{ uname_m_result.stdout }}"

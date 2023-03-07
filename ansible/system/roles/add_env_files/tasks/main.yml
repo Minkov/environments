@@ -1,0 +1,48 @@
+---
+- name: Add administration env file
+  template:
+    src: administration.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/applications/administration/administration.env"
+    mode: '0777'
+
+- name: Add ui env file
+  template:
+    src: ui.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/applications/ui/ui.env"
+    mode: '0777'
+
+- name: Add distributor env file
+  template:
+    src: distributor.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/applications/distributor/distributor.env"
+    mode: '0777'
+
+- name: Add common env file
+  template:
+    src: common.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/common/common.env"
+    mode: '0777'
+
+- name: Add common db env file
+  template:
+    src: common-db.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/common/db.env"
+    mode: '0777'
+
+- name: Add services mq env file
+  template:
+    src: mq.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/services/mq/mq.env"
+    mode: '0777'
+
+- name: Add services db env file
+  template:
+    src: db.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/services/db/db.env"
+    mode: '0777'
+
+- name: Add services postgres env file
+  template:
+    src: postgres.j2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/envs/{{ application_environment }}/services/postgres/postgres.env"
+    mode: '0777'

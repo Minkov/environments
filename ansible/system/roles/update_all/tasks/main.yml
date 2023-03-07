@@ -1,16 +1,18 @@
 ---
 # Update all packages
 - name: Upgrade all packages
-  yum: name=*, state=latest
+  apt: upgrade=dist force_apt_get=yes
+  become: yes
 # - name: Update all packages
 #   yum:
 #     update_only: yes
 #     state: latest
 
-- name: Install epel-release repository
-  package:
-    name: epel-release
-    state: present
+# - name: Install epel-release repository
+#   apt:
+#     name: epel-release
+#     state: present
+#     force_apt_get: true
 
 # - name: Install IUS repository
 #  yum_repository:

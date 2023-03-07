@@ -15,7 +15,11 @@
   max_fail_percentage: 0
 
   roles:
+  - prepare_folder_structure
+  - webhook
+  - supervisor
   - checkout_app
+  - add_env_files
   - update_app
-  # - deploy_app
+  - deploy_app
 

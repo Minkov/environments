@@ -1,4 +1,4 @@
---- 
+---
 - name: Create ~/repos directory
   file:
     path: "/home/{{ ansible_user }}/repos"
@@ -7,16 +7,16 @@
 
 - name: Clone nginx to ~/repos/nginx
   git:
-    repo: git@github.com:Minkov/nginx.git
+    repo: https://{{gituser}}:{{gittoken}}@github.com/Minkov/nginx.git
     version: master
     dest: "/home/{{ ansible_user }}/repos/nginx"
     accept_hostkey: yes
   become: no
 
-- name: Clone interactive-deployment to ~/repos/
+- name: Clone judge repo to ~/repos/judge-workers-deployment
   git:
-    repo: git@github.com:SoftUni-internal/interactive-deployment.git
-    version: master
-    dest: "/home/{{ ansible_user }}/repos/interactive-deployment"
+    repo: 'https://{{gituser}}:{{gittoken}}@github.com/SoftUni-Internal/judge-workers-deployment.git'
+    version: setup-judge-v2
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment"
     accept_hostkey: yes
   become: no
