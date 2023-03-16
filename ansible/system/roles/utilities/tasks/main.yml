@@ -30,5 +30,9 @@
     name: curl
     state: latest
 
-
-  
+- name: Install NodeJs
+  apt:
+    pkg:
+      - nodejs
+    state: latest
+    update_cache: true

@@ -1,0 +1,14 @@
+---
+- name: Create ~/repos directory
+  file:
+    path: "/home/{{ ansible_user }}/repos"
+    state: directory
+    mode: '0777'
+
+- name: Clone judge repo to ~/repos/judge-workers-deployment
+  git:
+    repo: 'https://{{gituser}}:{{gittoken}}@github.com/SoftUni-Internal/judge-workers-deployment.git'
+    version: automatic-docker-compose-generationg
+    dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment"
+    accept_hostkey: yes
+  become: no

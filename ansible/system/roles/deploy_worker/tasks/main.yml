@@ -1,0 +1,9 @@
+---
+- name: Restart Docker to fix network error
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: yes
+
+- name: Run application with docker compose
+  shell: docker-compose -f "/home/{{ ansible_user }}/repos/judge-workers-deployment/docker-compose.{{ application_environment }}.{{ workers_count }}.yml" up -d

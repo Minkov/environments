@@ -1,0 +1,5 @@
+- name: Edit generate script
+  shell: sed -i 's/const count = 16;/const count = {{ workers_count }};/g' /home/{{ ansible_user }}/repos/judge-workers-deployment/generate_docker_compose.js
+
+- name: Generate docker compose
+  shell: node /home/{{ ansible_user }}/repos/judge-workers-deployment/generate_docker_compose.js > /home/{{ ansible_user }}/repos/judge-workers-deployment/docker-compose.{{ application_environment }}.{{ workers_count }}.yml
