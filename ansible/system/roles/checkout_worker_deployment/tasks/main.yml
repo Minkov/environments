@@ -11,4 +11,5 @@
     version: automatic-docker-compose-generationg
     dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment"
     accept_hostkey: yes
+    force: yes
   become: no
