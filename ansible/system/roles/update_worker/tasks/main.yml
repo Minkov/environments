@@ -1,0 +1,22 @@
+---
+- name: install the package, force upgrade
+  pip:
+    name: pip
+    extra_args: --upgrade
+
+- name: Authenticate with private registry
+  shell: echo $PASSWORD | docker login ghcr.io -u {{ gituser }} --password-stdin
+  environment:
+    PASSWORD: "{{ gittoken }}"
+  args:
+    executable: /usr/bin/zsh
+
+- name: Docker-compose fix
+  pip:
+    name: docker-compose
+    state: latest
+
+- name: Pull newer images
+  shell: docker-compose -f "/home/{{ ansible_user }}/repos/judge-workers-deployment/docker-compose.{{ application_environment }}.{{ workers_count }}.yml" pull
+  args:
+    executable: /usr/bin/zsh
