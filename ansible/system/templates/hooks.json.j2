@@ -1,8 +1,8 @@
 [
     {
         "id": "redeploy-ui",
-        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/deploy.sh",
-        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web",
+        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}/deploy.sh",
+        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}",
         "pass-arguments-to-command": [
             {
                 "source": "string",
@@ -22,8 +22,8 @@
     },
     {
         "id": "redeploy-admin",
-        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/deploy.sh",
-        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web",
+        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}/deploy.sh",
+        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}",
         "pass-arguments-to-command": [
             {
                 "source": "string",
@@ -43,8 +43,8 @@
     },
     {
         "id": "redeploy-distributor",
-        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/deploy.sh",
-        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web",
+        "execute-command": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}/deploy.sh",
+        "command-working-directory": "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}",
         "pass-arguments-to-command": [
             {
                 "source": "string",

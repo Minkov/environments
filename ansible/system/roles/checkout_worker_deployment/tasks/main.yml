@@ -8,7 +8,7 @@
 - name: Clone judge repo to ~/repos/judge-workers-deployment
   git:
     repo: 'https://{{gituser}}:{{gittoken}}@github.com/SoftUni-Internal/judge-workers-deployment.git'
-    version: automatic-docker-compose-generationg
+    version: master
     dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment"
     accept_hostkey: yes
     force: yes
