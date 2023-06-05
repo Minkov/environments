@@ -5,18 +5,10 @@
     state: directory
     mode: '0777'
 
-- name: Clone nginx to ~/repos/nginx
-  git:
-    repo: https://{{gituser}}:{{gittoken}}@github.com/Minkov/nginx.git
-    version: master
-    dest: "/home/{{ ansible_user }}/repos/nginx"
-    accept_hostkey: yes
-  become: no
-
 - name: Clone judge repo to ~/repos/judge-workers-deployment
   git:
     repo: 'https://{{gituser}}:{{gittoken}}@github.com/SoftUni-Internal/judge-workers-deployment.git'
-    version: setup-judge-v2
+    version: master
     dest: "/home/{{ ansible_user }}/repos/judge-workers-deployment"
     accept_hostkey: yes
   become: no

@@ -10,4 +10,4 @@
     state: latest
 
 - name: Pull newer images
-  shell: docker-compose -f "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/docker-compose.{{ application_environment }}.yml" pull
+  shell: docker-compose -f "/home/{{ ansible_user }}/repos/judge-workers-deployment/judge-web/{{ application_environment }}/docker-compose.yml" pull
